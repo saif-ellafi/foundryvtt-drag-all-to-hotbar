@@ -1,7 +1,7 @@
 {
   "name": "foundryvtt-drag-all-to-hotbar",
   "version": "0.0.1",
-  "description": "Drag (almost) anything to Hotbar. Journals, Roll Tables, Actors, Playlist.",
+  "description": "Drag anything to Hotbar: Journals, RollTables, Actors, Items, Sounds, Playlist.",
   "main": "drag-all-to-hotbar.js",
   "scripts": {
     "copy": "mkdir -p dist && cp ./drag-all-to-hotbar.js dist/ && cp ./README.md dist/ && cp ./CHANGELOG.md dist/ && cp ./LICENSE.md dist/ && cp ./module.json dist/ && cp ./THANKS.txt dist/",

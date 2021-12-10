@@ -24,12 +24,22 @@ function _dthOpenItem(itemId) {
   game.items.get(itemId).sheet.render(true);
 }
 
+function _dthPlaySound(playlistId, soundId, macroId) {
+  const playlist = game.playlists.get(playlistId);
+  const sound = playlist.sounds.get(soundId);
+  if (playlist.data.sounds.contents.length && !sound.playing) {
+    playlist.playSound(sound);
+  } else if (playlist.data.sounds.contents.length) {
+    playlist.stopSound(sound);
+  }
+}
+
 function _dthPlayPlaylist(playlistId, macroId) {
   const playlist = game.playlists.get(playlistId);
-  if (!playlist.playing) {
+  if (playlist.data.sounds.contents.length && !playlist.playing) {
     playlist.playAll();
     game.macros.get(macroId).update({img: 'icons/svg/sound-off.svg'});
-  } else {
+  } else if (playlist.data.sounds.contents.length) {
     playlist.stopAll();
     game.macros.get(macroId).update({img: 'icons/svg/sound.svg'});
   }
@@ -73,8 +83,19 @@ Hooks.once('ready', function() {
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/book.svg');
         break;
       }
+      case 'PlaylistSound': {
+        const sound = game.playlists.get(data.playlistId).sounds.get(data.soundId);
+        appName = sound.name;
+        command = `_dthPlaySound('${data.playlistId}', '${data.soundId}', '__MACRO_ID__');`;
+        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg', true);
+        break;
+      }
       case 'Playlist': {
         const playlist = game.playlists.get(data.id);
+        if (playlist.mode === -1) {
+          ui.notifications.warn("Cannot drag a Soundboard Playlist. Please drag its sounds individually instead")
+          break;
+        }
         appName = playlist.name;
         command = `_dthPlayPlaylist('${data.id}', '__MACRO_ID__');`;
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg', true);

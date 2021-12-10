@@ -2,7 +2,7 @@
 	"name": "drag-all-to-hotbar",
 	"title": "Drag Anything to Hotbar",
 	"author": "JeansenVaars#2857",
-	"description": "Drag (almost) anything to Hotbar. Journals, RollTables, Actors, Items, Playlist.",
+	"description": "Drag anything to Hotbar: Journals, RollTables, Actors, Items, Sounds, Playlist.",
 	"version": "0.0.1",
 	"minimumCoreVersion": "0.8.9",
 	"compatibleCoreVersion": "9.235",
