@@ -1,5 +1,9 @@
-function _dthCreateAndAssign(slot, dataSlot, name, type, command, img) {
+function _dthCreateAndAssign(slot, dataSlot, name, type, command, img, includeMacroId) {
   Macro.create({name: name, type: type, command: command, img: img}).then(newMacro => {
+    if (includeMacroId) {
+      command = command.replace('__MACRO_ID__', newMacro.id);
+      newMacro.update({command: command});
+    }
     game.user.assignHotbarMacro(newMacro, slot, {fromSlot: dataSlot});
   });
 }
@@ -20,12 +24,15 @@ function _dthOpenItem(itemId) {
   game.items.get(itemId).sheet.render(true);
 }
 
-function _dthPlayPlaylist(playlistId) {
+function _dthPlayPlaylist(playlistId, macroId) {
   const playlist = game.playlists.get(playlistId);
-  if (!playlist.playing)
+  if (!playlist.playing) {
     playlist.playAll();
-  else
+    game.macros.get(macroId).update({img: 'icons/svg/sound-off.svg'});
+  } else {
     playlist.stopAll();
+    game.macros.get(macroId).update({img: 'icons/svg/sound.svg'});
+  }
 }
 
 Hooks.once('ready', function() {
@@ -69,8 +76,8 @@ Hooks.once('ready', function() {
       case 'Playlist': {
         const playlist = game.playlists.get(data.id);
         appName = playlist.name;
-        command = `_dthPlayPlaylist('${data.id}');`;
-        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg');
+        command = `_dthPlayPlaylist('${data.id}', '__MACRO_ID__');`;
+        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg', true);
         break;
       }
     }
