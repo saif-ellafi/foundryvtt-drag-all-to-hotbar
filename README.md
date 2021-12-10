@@ -6,7 +6,7 @@ Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists
 * Actors - Open Sheet
 * Journal Entries - Open Journal
 * Roll Tables - Draws from Table
-* Sounds - Play a sound
+* Sounds - Play a sound (Will only work from Foundry V9 and onwards)
 * Playlists - Play/Stop toggle
 * Items - Open Item (At world level)
 
