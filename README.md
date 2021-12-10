@@ -1,5 +1,5 @@
-![GitHub all releases](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-clipboard-image/total?logo=GitHub) ![GitHub release (latest by date)](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-clipboard-image/latest/total) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/saif-ellafi/foundryvtt-clipboard-image) ![GitHub issues](https://img.shields.io/github/issues-raw/saif-ellafi/foundryvtt-clipboard-image) ![GitHub](https://img.shields.io/github/license/saif-ellafi/foundryvtt-clipboard-image)
-# Drag All To Hotbar for Foundry VTT
+![GitHub all releases](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-drag-all-to-hotbar/total?logo=GitHub) ![GitHub release (latest by date)](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-drag-all-to-hotbar/latest/total) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/saif-ellafi/foundryvtt-drag-all-to-hotbar) ![GitHub issues](https://img.shields.io/github/issues-raw/saif-ellafi/foundryvtt-drag-all-to-hotbar) ![GitHub](https://img.shields.io/github/license/saif-ellafi/foundryvtt-drag-all-to-hotbar)
+# Drag Anything To Hotbar for Foundry VTT
 
 Allows drag & drop of Actors, Journals, Roll Tables, Playlists and Items into the Macro Hotbar with the following effects:
 
