@@ -17,11 +17,11 @@ Into the Macro HotBar for quick access
 
 ## Check my other modules
 
-[Minimal UI](https://github.com/saif-ellafi/foundryvtt-minimal-ui)
-[Window Controls](https://github.com/saif-ellafi/foundryvtt-window-controls)
-[Super Select](https://github.com/saif-ellafi/foundryvtt-super-select)
-[Actor Link Indicator](https://github.com/saif-ellafi/foundryvtt-actor-link-indicator)
-[Mythic GME Tools](https://github.com/saif-ellafi/foundryvtt-mythic-gme)
+* [Minimal UI](https://github.com/saif-ellafi/foundryvtt-minimal-ui)
+* [Window Controls](https://github.com/saif-ellafi/foundryvtt-window-controls)
+* [Super Select](https://github.com/saif-ellafi/foundryvtt-super-select)
+* [Actor Link Indicator](https://github.com/saif-ellafi/foundryvtt-actor-link-indicator)
+* [Mythic GME Tools](https://github.com/saif-ellafi/foundryvtt-mythic-gme)
 
 ## Known Issues
 
@@ -32,12 +32,6 @@ Playlist toggle icon won't change if playing the playlist from the playlist inst
 ![JVLogo](logo-small-black.png)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V14D3AH)
-
-## Check out my other modules!
-
-* Minimal UI
-* Scene Preview
-* Super Select
 
 # Appreciations
 
