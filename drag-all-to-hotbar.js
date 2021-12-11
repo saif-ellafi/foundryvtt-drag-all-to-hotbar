@@ -45,6 +45,13 @@ function _dthPlayPlaylist(playlistId, macroId) {
   }
 }
 
+Hooks.once('renderSidebar', function() {
+  // This is needed to allow users drag actors into the Hotbar. Gives specific permission to the event 'dragstart'
+  // Note: This WON'T give permissions to create tokens, just to initiate the drag & drop in the UI
+  if (!game.user.hasPermission('TOKEN_CREATE')) // Don't do anything if users already can do this normally
+    ui.actors._dragDrop[0].permissions["dragstart"] = () => true;
+});
+
 Hooks.once('ready', function() {
 
   Hooks.on('hotbarDrop', function(hotbarProps, data, slot) {
