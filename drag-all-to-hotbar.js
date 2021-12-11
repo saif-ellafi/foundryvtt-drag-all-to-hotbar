@@ -1,27 +1,41 @@
-function _dthCreateAndAssign(slot, dataSlot, name, type, command, img, includeMacroId) {
+_dth_MACRO_KEY = '__MACRO_ID__';
+
+function _dthCreateAndAssign(slot, dataSlot, name, type, command, img) {
   Macro.create({name: name, type: type, command: command, img: img}).then(newMacro => {
-    if (includeMacroId) {
-      command = command.replace('__MACRO_ID__', newMacro.id);
+    if (command.includes(_dth_MACRO_KEY)) {
+      command = command.replace(_dth_MACRO_KEY, newMacro.id);
       newMacro.update({command: command});
     }
     game.user.assignHotbarMacro(newMacro, slot, {fromSlot: dataSlot});
   });
 }
 
-function _dthDrawFromTable(tableId) {
-  game.tables.get(tableId).draw();
+function _dthDrawFromTable(tableId, packId) {
+  if (packId)
+    game.packs.get(packId).getDocument(tableId).then(doc => doc.draw());
+  else
+    game.tables.get(tableId).draw();
 }
 
-function _dthOpenJournal(journalId) {
-  game.journal.get(journalId).sheet.render(true);
+function _dthOpenJournal(journalId, packId) {
+  if (packId)
+    game.packs.get(packId).getDocument(journalId).then(doc => doc.sheet.render(true));
+  else
+    game.journal.get(journalId).sheet.render(true);
 }
 
-function _dthOpenActor(actorId) {
-  game.actors.get(actorId).sheet.render(true);
+function _dthOpenActor(actorId, packId) {
+  if (packId)
+    game.packs.get(packId).getDocument(actorId).then(doc => doc.sheet.render(true));
+  else
+    game.actors.get(actorId).sheet.render(true);
 }
 
-function _dthOpenItem(itemId) {
-  game.items.get(itemId).sheet.render(true);
+function _dthOpenItem(itemId, packId) {
+  if (packId)
+    game.packs.get(packId).getDocument(itemId).then(doc => doc.sheet.render(true));
+  else
+    game.items.get(itemId).sheet.render(true);
 }
 
 function _dthPlaySound(playlistId, soundId, macroId) {
@@ -54,47 +68,72 @@ Hooks.once('renderSidebar', function() {
 
 Hooks.once('ready', function() {
 
-  Hooks.on('hotbarDrop', function(hotbarProps, data, slot) {
+  Hooks.on('hotbarDrop', async function(hotbarProps, data, slot) {
 
     let command;
     let appName;
 
     switch (data.type) {
       case 'RollTable': {
-        const table = game.tables.get(data.id);
+        let table;
+        if (data.pack)
+          table = await game.packs.get(data.pack).getDocument(data.id);
+        else
+          table = game.tables.get(data.id);
+        if (!table)
+          return;
         appName = 'Draw from: ' + table.name;
-        command = `_dthDrawFromTable('${data.id}');`;
+        command = `_dthDrawFromTable('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, table.data.img);
         break;
       }
       case 'Actor': {
-        const actor = game.actors.get(data.id);
+        let actor;
+        if (data.pack)
+          actor = await game.packs.get(data.pack).getDocument(data.id);
+        else
+          actor = game.actors.get(data.id);
+        if (!actor)
+          return;
         appName = actor.name;
-        command = `_dthOpenActor('${data.id}');`;
+        command = `_dthOpenActor('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, actor.data.img);
         break;
       }
       case 'Item': {
-        const item = game.items.get(data.id);
+        let item;
+        if (data.pack)
+          item = await game.packs.get(data.pack).getDocument(data.id);
+        else
+          item = game.items.get(data.id);
         if (!item)
           return;
         appName = item.name;
-        command = `_dthOpenItem('${data.id}');`;
+        command = `_dthOpenItem('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, item.data.img);
         break;
       }
       case 'JournalEntry': {
-        const journal = game.journal.get(data.id);
+        let journal;
+        if (data.pack)
+          journal = await game.packs.get(data.pack).getDocument(data.id);
+        else
+          journal = game.journal.get(data.id);
+        if (!journal)
+          return;
         appName = journal.name;
-        command = `_dthOpenJournal('${data.id}');`;
-        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/book.svg');
+        command = `_dthOpenJournal('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
+        // in Foundry, journals may not have icons but in compendiums or by module they might!
+        console.log(journal.data.img);
+        let journalIcon = journal.data.img ?? 'icons/svg/book.svg';
+        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, journalIcon);
         break;
       }
       case 'PlaylistSound': {
         const sound = game.playlists.get(data.playlistId).sounds.get(data.soundId);
         appName = sound.name;
-        command = `_dthPlaySound('${data.playlistId}', '${data.soundId}', '__MACRO_ID__');`;
-        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg', true);
+        command = `_dthPlaySound('${data.playlistId}', '${data.soundId}', '${_dth_MACRO_KEY}');`;
+        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg');
         break;
       }
       case 'Playlist': {
@@ -104,8 +143,8 @@ Hooks.once('ready', function() {
           break;
         }
         appName = playlist.name;
-        command = `_dthPlayPlaylist('${data.id}', '__MACRO_ID__');`;
-        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg', true);
+        command = `_dthPlayPlaylist('${data.id}', '${_dth_MACRO_KEY}');`;
+        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg');
         break;
       }
     }
