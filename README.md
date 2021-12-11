@@ -23,6 +23,9 @@ This module is very simple and does not do anything new or fancy. It is all made
 ## Ready Journal Entries and Frequent Important Items or Abilities!
 ![image](https://user-images.githubusercontent.com/27952699/145674165-7e0ee235-11e7-473c-bdc3-e620ed3f3e32.png)
 
+## Ready entire Compendiums themselves!
+![image](https://user-images.githubusercontent.com/27952699/145686242-e54f02e9-c366-44a1-8b21-169065542c59.png)
+
 ### Notes
 _For individual sounds:_ This Feature only works on the upcoming Foundry V9 since it is a new feature in Foundry to be able to drag and drop sounds.
 
