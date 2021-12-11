@@ -10,6 +10,16 @@ Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists
 * **Playlists** - Play/Stop toggle
 * **Items** - Open Item (At world level)
 
+## Ready your characters!
+![image](https://user-images.githubusercontent.com/27952699/145674099-f2df0bf7-96ac-45ae-bcb6-33b8f7ce89a7.png)
+
+## Ready Quick Draw from Random Tables or Sound Effects!
+![image](https://user-images.githubusercontent.com/27952699/145674190-4f8ae4d5-446c-470e-9229-8adb6c5f02f9.png)
+
+## Ready Journal Entries and Frequent Important Items or Abilities!
+![image](https://user-images.githubusercontent.com/27952699/145674165-7e0ee235-11e7-473c-bdc3-e620ed3f3e32.png)
+
+
 ### Notes
 _For Non-GMs:_ Players need permission to see the entity in order to be able to drag and drop into the Hotbar. Except for **Actors** which also need the **permission to create new Tokens**. It is required in order to drag & drop actors. 
 
