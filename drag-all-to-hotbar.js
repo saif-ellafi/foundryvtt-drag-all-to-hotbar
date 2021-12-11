@@ -124,8 +124,7 @@ Hooks.once('ready', function() {
         appName = journal.name;
         command = `_dthOpenJournal('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
         // in Foundry, journals may not have icons but in compendiums or by module they might!
-        console.log(journal.data.img);
-        let journalIcon = journal.data.img ?? 'icons/svg/book.svg';
+        let journalIcon = journal.data.img ? journal.data.img : 'icons/svg/book.svg';
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, journalIcon);
         break;
       }
