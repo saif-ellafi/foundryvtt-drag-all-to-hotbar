@@ -19,9 +19,9 @@ Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists
 ## Ready Journal Entries and Frequent Important Items or Abilities!
 ![image](https://user-images.githubusercontent.com/27952699/145674165-7e0ee235-11e7-473c-bdc3-e620ed3f3e32.png)
 
-
 ### Notes
 _For Non-GMs:_ Players need permission to see the entity in order to be able to drag and drop into the Hotbar. Except for **Actors** which also need the **permission to create new Tokens**. It is required in order to drag & drop actors. 
+![image](https://user-images.githubusercontent.com/27952699/145674228-427c9250-92c4-48c1-a92f-3040524a7e6c.png)
 
 _For individual sounds:_ This Feature only works on the upcoming Foundry V9 since it is a new feature in Foundry to be able to drag and drop sounds.
 
