@@ -59,11 +59,28 @@ function _dthPlayPlaylist(playlistId, macroId) {
   }
 }
 
+function _dthOpenPack(packName) {
+  game.packs.get(packName).render(true);
+}
+
 Hooks.once('renderSidebar', function() {
   // This is needed to allow users drag actors into the Hotbar. Gives specific permission to the event 'dragstart'
   // Note: This WON'T give permissions to create tokens, just to initiate the drag & drop in the UI
   if (!game.user.hasPermission('TOKEN_CREATE')) // Don't do anything if users already can do this normally
-    ui.actors._dragDrop[0].permissions["dragstart"] = () => true;
+    ui.actors._dragDrop[0].permissions["dragsend"] = () => true;
+  const compendiumDragDrop = new DragDrop({
+    dragSelector: ".compendium-pack",
+    dropSelector: ".compendium-list",
+    callbacks: {
+      dragstart: function (event) {
+        let li = event.currentTarget.closest(".directory-item");
+        const dragData = { type: 'Compendium', pack: li.getAttribute('data-pack') };
+        event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+        this._dragType = dragData.type;
+      }.bind(ui.compendium),
+    }
+  });
+  ui.compendium._dragDrop.push(compendiumDragDrop);
 });
 
 Hooks.once('ready', function() {
@@ -130,6 +147,8 @@ Hooks.once('ready', function() {
       }
       case 'PlaylistSound': {
         const sound = game.playlists.get(data.playlistId).sounds.get(data.soundId);
+        if (!sound)
+          return;
         appName = sound.name;
         command = `_dthPlaySound('${data.playlistId}', '${data.soundId}', '${_dth_MACRO_KEY}');`;
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg');
@@ -137,6 +156,8 @@ Hooks.once('ready', function() {
       }
       case 'Playlist': {
         const playlist = game.playlists.get(data.id);
+        if (!playlist)
+          return;
         if (playlist.mode === -1) {
           ui.notifications.warn("Cannot drag a Soundboard Playlist. Please drag its sounds individually instead")
           break;
@@ -145,6 +166,14 @@ Hooks.once('ready', function() {
         command = `_dthPlayPlaylist('${data.id}', '${_dth_MACRO_KEY}');`;
         _dthCreateAndAssign(slot, data.slot, appName, 'script', command, 'icons/svg/sound.svg');
         break;
+      }
+      case 'Compendium': {
+        const pack = game.packs.get(data.pack)
+        if (!pack)
+          return;
+        appName = pack.title;
+        command = `_dthOpenPack('${data.pack}');`;
+        _dthCreateAndAssign(slot, data.slot, 'Compendium: ' + appName, 'script', command, 'icons/svg/temple.svg');
       }
     }
 

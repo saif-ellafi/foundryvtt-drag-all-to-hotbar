@@ -1,3 +1,6 @@
+### 0.0.4
+* Support for Compendiums themselves!
+
 ### 0.0.3
 * Support for Compendium content! (Except for sounds)
 * Added support for Journal Entry icons other than the default book icon
