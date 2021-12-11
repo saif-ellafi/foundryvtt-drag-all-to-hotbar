@@ -10,7 +10,7 @@ Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists
 * **Playlists** - Play/Stop toggle
 * **Items** - Open Item (At world level)
 
-This module is very simple and does not do anything new or fancy. It is all made of Foundry existing capabilities, so overhead should be minimal.
+This module is very simple and does not do anything new or fancy. It is all made of Foundry existing capabilities.
 
 ## Ready your characters!
 ![image](https://user-images.githubusercontent.com/27952699/145674099-f2df0bf7-96ac-45ae-bcb6-33b8f7ce89a7.png)
