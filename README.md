@@ -3,14 +3,17 @@
 
 Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists into the Macro Hotbar with the following effects:
 
-* Actors - Open Sheet
-* Journal Entries - Open Journal
-* Roll Tables - Draws from Table
-* Sounds - Play a sound (Will only work from Foundry V9 and onwards)
-* Playlists - Play/Stop toggle
-* Items - Open Item (At world level)
+* **Actors** - Open Sheet
+* **Journal Entries** - Open Journal
+* **Roll Tables** - Draws from Table
+* **Sounds** - Play a sound (Will only work from Foundry V9 and onwards)
+* **Playlists** - Play/Stop toggle
+* **Items** - Open Item (At world level)
 
-Into the Macro HotBar for quick access
+### Notes
+_For Non-GMs:_ Players need permission to see the entity in order to be able to drag and drop into the Hotbar. Except for **Actors** which also need the **permission to create new Tokens**. It is required in order to drag & drop actors. 
+
+_For individual sounds:_ This Feature only works on the upcoming Foundry V9 since it is a new feature in Foundry to be able to drag and drop sounds.
 
 ### [Invite me a coffee if you like this module :D](https://ko-fi.com/jeansenvaars)
 
