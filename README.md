@@ -3,7 +3,7 @@
 
 Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists into the Macro Hotbar with the following effects:
 
-* **Actors** - Open Sheet
+* **Actors** - Open Sheet (Needs create new Tokens permission)
 * **Journal Entries** - Open Journal
 * **Roll Tables** - Draws from Table
 * **Sounds** - Play a sound (Will only work from Foundry V9 and onwards)
