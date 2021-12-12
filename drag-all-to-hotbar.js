@@ -18,13 +18,17 @@ function _dthDrawFromTable(tableId, packId) {
 }
 
 function _dthOpenJournal(journalId, packId) {
-  const openJournal = Object.values(ui.windows).find(w => w.document?.id === journalId);
+  let openJournal = Object.values(ui.windows).find(w => w.document?.id === journalId);
+  if (!openJournal && ui.PDFoundry)
+    openJournal = Object.values(ui.windows).find(w => w.title === game.journal.get(journalId)?.name);
   if (openJournal?.rendered && openJournal._minimized)
     openJournal.maximize().then(() => openJournal.bringToTop());
   else if (openJournal?.rendered)
     openJournal.bringToTop();
   else if (packId)
     game.packs.get(packId).getDocument(journalId).then(doc => doc.sheet.render(true));
+  else if (ui.PDFoundry && game.journal.get(journalId)?.data.flags.pdfoundry)
+    ui.PDFoundry.openPDFByName(game.journal.get(journalId).name);
   else
     game.journal.get(journalId)?.sheet.render(true);
 }

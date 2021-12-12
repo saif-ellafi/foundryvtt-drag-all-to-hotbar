@@ -1,4 +1,5 @@
 ### 0.0.5
+* PDFoundry PDF Journals (if enabled) will now open the PDF entry
 * If a target window is already open, bring it to the top
 * If a target window is minimized, maximize it
 * Improved error handling of some corner cases
