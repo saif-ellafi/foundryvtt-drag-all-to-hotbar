@@ -14,28 +14,43 @@ function _dthDrawFromTable(tableId, packId) {
   if (packId)
     game.packs.get(packId).getDocument(tableId).then(doc => doc.draw());
   else
-    game.tables.get(tableId).draw();
+    game.tables.get(tableId)?.draw();
 }
 
 function _dthOpenJournal(journalId, packId) {
-  if (packId)
+  const openJournal = Object.values(ui.windows).find(w => w.document?.id === journalId);
+  if (openJournal?.rendered && openJournal._minimized)
+    openJournal.maximize().then(() => openJournal.bringToTop());
+  else if (openJournal?.rendered)
+    openJournal.bringToTop();
+  else if (packId)
     game.packs.get(packId).getDocument(journalId).then(doc => doc.sheet.render(true));
   else
-    game.journal.get(journalId).sheet.render(true);
+    game.journal.get(journalId)?.sheet.render(true);
 }
 
 function _dthOpenActor(actorId, packId) {
-  if (packId)
+  const openActor = Object.values(ui.windows).find(w => w.document?.id === actorId);
+  if (openActor?.rendered && openActor._minimized)
+    openActor.maximize().then(() => openActor.bringToTop());
+  else if (openActor?.rendered)
+    openActor.bringToTop();
+  else if (packId)
     game.packs.get(packId).getDocument(actorId).then(doc => doc.sheet.render(true));
   else
-    game.actors.get(actorId).sheet.render(true);
+    game.actors.get(actorId)?.sheet.render(true);
 }
 
 function _dthOpenItem(itemId, packId) {
-  if (packId)
+  const openItem = Object.values(ui.windows).find(w => w.document?.id === itemId);
+  if (openItem?.rendered && openItem._minimized)
+    openItem.maximize().then(() => openItem.bringToTop());
+  else if (openItem?.rendered)
+    openItem.bringToTop();
+  else if (packId)
     game.packs.get(packId).getDocument(itemId).then(doc => doc.sheet.render(true));
   else
-    game.items.get(itemId).sheet.render(true);
+    game.items.get(itemId)?.sheet.render(true);
 }
 
 function _dthPlaySound(playlistId, soundId, macroId) {
@@ -55,12 +70,21 @@ function _dthPlayPlaylist(playlistId, macroId) {
     game.macros.get(macroId).update({img: 'icons/svg/sound-off.svg'});
   } else if (playlist.data.sounds.contents.length) {
     playlist.stopAll();
-    game.macros.get(macroId).update({img: 'icons/svg/sound.svg'});
+    game.macros.get(macroId)?.update({img: 'icons/svg/sound.svg'});
   }
 }
 
 function _dthOpenPack(packName) {
-  game.packs.get(packName).render(true);
+  const targetPack = game.packs.get(packName);
+  if (!targetPack)
+    return;
+  const openPack = Object.values(ui.windows).find(w => w.metadata?.label === targetPack.title);
+  if (openPack?.rendered && openPack._minimized)
+    openPack.maximize().then(() => openPack.bringToTop());
+  else if (openPack?.rendered)
+    openPack.bringToTop();
+  else if (!openPack)
+    game.packs.get(packName).render(true);
 }
 
 Hooks.once('renderSidebar', function() {
