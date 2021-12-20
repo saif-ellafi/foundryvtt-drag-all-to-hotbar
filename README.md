@@ -1,6 +1,6 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-drag-all-to-hotbar/total?logo=GitHub) ![GitHub release (latest by date)](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-drag-all-to-hotbar/latest/total) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/saif-ellafi/foundryvtt-drag-all-to-hotbar) ![GitHub issues](https://img.shields.io/github/issues-raw/saif-ellafi/foundryvtt-drag-all-to-hotbar) ![GitHub](https://img.shields.io/github/license/saif-ellafi/foundryvtt-drag-all-to-hotbar)
 # Drag Anything To Hotbar for Foundry VTT
-### _Created by: JeansenVaars_
+### _Created by: JeansenVaars_ - [Invite me a coffee if you like this module :D](https://ko-fi.com/jeansenvaars)
 
 Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists into the Macro Hotbar with the following effects:
 
@@ -29,8 +29,6 @@ This module is very simple and does not do anything new or fancy. It is all made
 
 ### Notes
 _For individual sounds:_ This Feature only works on the upcoming Foundry V9 since it is a new feature in Foundry to be able to drag and drop sounds.
-
-### [Invite me a coffee if you like this module :D](https://ko-fi.com/jeansenvaars)
 
 ![example](example-drag-all.gif)
 
