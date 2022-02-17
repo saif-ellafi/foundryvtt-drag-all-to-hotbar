@@ -33,6 +33,20 @@ function _dthOpenJournal(journalId, packId) {
     game.journal.get(journalId)?.sheet.render(true);
 }
 
+function _dthOpenCards(cardsId, packId) {
+  console.log(cardsId);
+  console.log(packId);
+  let openCards = Object.values(ui.windows).find(w => w.document?.id === cardsId);
+  if (openCards?.rendered && openCards._minimized)
+    openCards.maximize().then(() => openCards.bringToTop());
+  else if (openCards?.rendered)
+    openCards.bringToTop();
+  else if (packId)
+    game.packs.get(packId).getDocument(cardsId).then(doc => doc.sheet.render(true));
+  else
+    game.cards.get(cardsId)?.sheet.render(true);
+}
+
 function _dthOpenActor(actorId, packId) {
   const openActor = Object.values(ui.windows).find(w => w.document?.id === actorId);
   if (openActor?.rendered && openActor._minimized)
@@ -202,6 +216,21 @@ Hooks.once('ready', function() {
         appName = pack.title;
         command = `_dthOpenPack('${data.pack}');`;
         _dthCreateAndAssign(slot, data.slot, 'Compendium: ' + appName, 'script', command, 'icons/svg/temple.svg');
+        break;
+      }
+      case 'Cards': {
+        let cards;
+        if (data.pack)
+          cards = await game.packs.get(data.pack).getDocument(data.id);
+        else
+          cards = game.cards.get(data.id);
+        if (!cards)
+          return;
+        appName = cards.name;
+        command = `_dthOpenCards('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
+        let cardIcon = cards.data.img ? cards.data.img : 'icons/svg/card-hand.svg';
+        _dthCreateAndAssign(slot, data.slot, appName, 'script', command, cardIcon);
+        break;
       }
     }
 

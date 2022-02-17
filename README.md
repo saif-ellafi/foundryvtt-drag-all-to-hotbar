@@ -9,6 +9,7 @@ Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists
 * **Sounds** - Play a sound (Will only work from Foundry V9 and onwards)
 * **Playlists** - Play/Stop toggle
 * **Items** - Open Item (At world level)
+* **Cards** - Open Decks and Hands
 * **Compendiums** - Open the Compendium Folder
 * **Compendium Content** - Same for all of the above except Sounds
 

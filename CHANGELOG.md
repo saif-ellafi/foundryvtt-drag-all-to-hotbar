@@ -1,3 +1,7 @@
+### 1.0.0
+* Can now also drag and drop CARDS to Macro Hotbar
+* Compatibility for all V9 versions
+
 ### 0.0.5
 * PDFoundry PDF Journals (if enabled) will now open the PDF entry
 * If a target window is already open, bring it to the top
