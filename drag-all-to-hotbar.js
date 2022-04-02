@@ -218,6 +218,15 @@ Hooks.once('ready', function() {
         _dthCreateAndAssign(slot, data.slot, 'Compendium: ' + appName, 'script', command, 'icons/svg/temple.svg');
         break;
       }
+      case 'CompendiumEntry': { // Compendium Folders module support
+        const pack = game.packs.get(data.id)
+        if (!pack)
+          return;
+        appName = pack.title;
+        command = `_dthOpenPack('${data.id}');`;
+        _dthCreateAndAssign(slot, data.slot, 'Compendium: ' + appName, 'script', command, 'icons/svg/temple.svg');
+        break;
+      }
       case 'Cards': {
         let cards;
         if (data.pack)

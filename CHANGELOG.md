@@ -1,3 +1,6 @@
+### 1.0.1
+* Compatibility with Compendium Folders
+
 ### 1.0.0
 * Can now also drag and drop CARDS to Macro Hotbar
 * Compatibility for all V9 versions
