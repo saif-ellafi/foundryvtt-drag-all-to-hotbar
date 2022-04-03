@@ -28,14 +28,12 @@ function _dthOpenJournal(journalId, packId) {
   else if (packId)
     game.packs.get(packId).getDocument(journalId).then(doc => doc.sheet.render(true));
   else if (ui.PDFoundry && game.journal.get(journalId)?.data.flags.pdfoundry)
-    ui.PDFoundry.openPDFByName(game.journal.get(journalId).name);
+    ui.PDFoundry.openPDFByName(game.journal.get(journalId).name, { entity: game.journal.get(journalId) });
   else
     game.journal.get(journalId)?.sheet.render(true);
 }
 
 function _dthOpenCards(cardsId, packId) {
-  console.log(cardsId);
-  console.log(packId);
   let openCards = Object.values(ui.windows).find(w => w.document?.id === cardsId);
   if (openCards?.rendered && openCards._minimized)
     openCards.maximize().then(() => openCards.bringToTop());

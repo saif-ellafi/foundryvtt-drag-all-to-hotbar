@@ -1,3 +1,6 @@
+### 1.0.2
+* Fixed PDFoundry fillable forms not launching
+
 ### 1.0.1
 * Compatibility with Compendium Folders
 
