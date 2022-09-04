@@ -1,3 +1,7 @@
+### 1.0.3
+* Drag anything to hotbar ends its life in V9
+* Foundry V10 already does this by default and no module is needed :)
+
 ### 1.0.2
 * Fixed PDFoundry fillable forms not launching
 
