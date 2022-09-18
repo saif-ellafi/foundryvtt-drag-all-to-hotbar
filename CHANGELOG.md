@@ -1,3 +1,7 @@
+### 1.1.0
+* Drag anything to hotbar continues alive!!!
+* Supported Playlist, Sounds and RollTables in V10
+
 ### 1.0.3
 * Drag anything to hotbar ends its life in V9
 * Foundry V10 already does this by default and no module is needed :)
