@@ -1,3 +1,6 @@
+### 1.2.0
+* Support Foundry V11
+
 ### 1.1.0
 * Drag anything to hotbar continues alive!!!
 * Supported Playlist, Sounds and RollTables in V10
