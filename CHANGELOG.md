@@ -1,3 +1,7 @@
+### 1.2.1
+* Added compendium support
+* Actor icons are kept when dragged to the hotbar
+
 ### 1.2.0
 * Support Foundry V11
 

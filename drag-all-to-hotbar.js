@@ -1,6 +1,6 @@
 _dth_MACRO_KEY = '__MACRO_ID__';
 
-function _dthCreateAndAssign(dataSlot, name, type, command, img) {
+function _dthCreateAndAssign(name, type, command, img, slot) {
   let macro = Macro.implementation.create({
     name: name,
     type: type,
@@ -11,6 +11,9 @@ function _dthCreateAndAssign(dataSlot, name, type, command, img) {
     if (command.includes(_dth_MACRO_KEY)) {
       command = command.replace(_dth_MACRO_KEY, newMacro.id);
       newMacro.update({command: command});
+    }
+    if (slot) {
+      game.user.assignHotbarMacro(newMacro, slot);
     }
   })
   return macro;
@@ -46,6 +49,19 @@ function _dthPlayPlaylist(playlistId, macroId) {
   }
 }
 
+function _dthOpenPack(packName) {
+  const targetPack = game.packs.get(packName);
+  if (!targetPack)
+    return;
+  const openPack = Object.values(ui.windows).find(w => w.metadata?.label === targetPack.title);
+  if (openPack?.rendered && openPack._minimized)
+    openPack.maximize().then(() => openPack.bringToTop());
+  else if (openPack?.rendered)
+    openPack.bringToTop();
+  else if (!openPack)
+    game.packs.get(packName).render(true);
+}
+
 Hooks.once('ready', function() {
 
   libWrapper.register('drag-all-to-hotbar', 'Hotbar.prototype._createDocumentSheetToggle', async function (wrapped, ...args) {
@@ -56,22 +72,10 @@ Hooks.once('ready', function() {
     let data = args[0];
 
     switch (args[0]?.constructor.name) {
-      case 'RollTable': {
-        let table;
-        if (data.pack)
-          table = await game.packs.get(data.pack).getDocument(data.id);
-        else
-          table = game.tables.get(data.id);
-        if (!table)
-          return;
-        appName = 'Draw from: ' + table.name;
-        command = `_dthDrawFromTable('${data.id}'${data.pack ? `, '${data.pack}'` : ''});`;
-        return _dthCreateAndAssign(data.slot, appName, 'script', command, table.img);
-      }
       case 'PlaylistSound': {
         appName = data.name;
         command = `_dthPlaySound('${data.parent.id}', '${data.id}', '${_dth_MACRO_KEY}');`;
-        return _dthCreateAndAssign(data.slot, appName, 'script', command, 'icons/svg/sound.svg');
+        return _dthCreateAndAssign(appName, 'script', command, 'icons/svg/sound.svg');
       }
       case 'Playlist': {
         const playlist = game.playlists.get(data.id);
@@ -83,7 +87,7 @@ Hooks.once('ready', function() {
         }
         appName = playlist.name;
         command = `_dthPlayPlaylist('${data.id}', '${_dth_MACRO_KEY}');`;
-        return _dthCreateAndAssign(data.slot, appName, 'script', command, 'icons/svg/sound.svg');
+        return _dthCreateAndAssign(appName, 'script', command, 'icons/svg/sound.svg');
       }
       default: {
         return wrapped(...args);
@@ -92,4 +96,31 @@ Hooks.once('ready', function() {
   }, 'MIXED');
 
 
+});
+
+Hooks.on('hotbarDrop', function(hotbar, pack, slot) {
+  switch(pack.type) {
+    case 'Compendium': {
+      appName = game.packs.get(pack.id).title;
+      command = `_dthOpenPack('${pack.id}');`;
+      _dthCreateAndAssign('Compendium: ' + appName, 'script', command, 'icons/svg/temple.svg', slot);
+      break;
+    }
+  }
+});
+
+Hooks.on('createMacro', function(macro) {
+  if (macro.command.includes('toggleDocumentSheet') && macro.command.includes('Actor')) {
+    const id = macro.command.match('Actor\.(.*)"')[1];
+    if (id) {
+      const img = game.actors.get(id).img;
+      macro.update({img, img});
+    }
+  } else if (macro.command.includes('toggleDocumentSheet') && macro.command.includes('Cards')) {
+    const id = macro.command.match('Cards\.(.*)"')[1];
+    if (id) {
+      const img = game.cards.get(id).img;
+      macro.update({img, img});
+    }
+  }
 });

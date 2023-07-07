@@ -1,43 +1,18 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-drag-all-to-hotbar/total?logo=GitHub) ![GitHub release (latest by date)](https://img.shields.io/github/downloads/saif-ellafi/foundryvtt-drag-all-to-hotbar/latest/total) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/saif-ellafi/foundryvtt-drag-all-to-hotbar) ![GitHub issues](https://img.shields.io/github/issues-raw/saif-ellafi/foundryvtt-drag-all-to-hotbar) ![GitHub](https://img.shields.io/github/license/saif-ellafi/foundryvtt-drag-all-to-hotbar)
 # JV's Drag Anything To Hotbar for Foundry VTT
 
-## Support for Foundry V10 IMPORTANT NOTE
-Thanks to the community for supporting this module. **Drag Anything to Hotbar 1.1.0** will work on FoundryVTT v10 but only
-for RollTables(roll immediately), Playlists and Sounds (play fom hotbar). If there is any functionality missing let me know :)
+## Support for Foundry V10/V11 IMPORTANT NOTE
+Allows to drag playlists, sounds, and compendium folders into the Macro bar. Also keeps actor and decks icons in it.
 
-Allows drag & drop of Actors, Items, Roll Tables, Journals, Sounds and Playlists into the Macro Hotbar with the following effects:
+![img.png](img.png)
 
-* **Actors** - Open Sheet
-* **Journal Entries** - Open Journal - or PDF if PDFoundry
-* **Roll Tables** - Draws from Table
-* **Sounds** - Play a sound (Will only work from Foundry V9 and onwards)
-* **Playlists** - Play/Stop toggle
-* **Items** - Open Item (At world level)
-* **Cards** - Open Decks and Hands
-* **Compendiums** - Open the Compendium Folder
-* **Compendium Content** - Same for all of the above except Sounds
+Originally, this module allowed to drag anything into the Macro bar.
+Over time, as Foundry V10 and V11 came out, Foundry implemented this as part of their core functionalities;
+the title of this module remains comprehensive for historical reasons :)
 
 ### _Created by: JeansenVaars_
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V14D3AH)
 
-This module is very simple and does not do anything new or fancy. It is all made of Foundry existing capabilities.
-
-## Ready your characters!
-![image](https://user-images.githubusercontent.com/27952699/145674099-f2df0bf7-96ac-45ae-bcb6-33b8f7ce89a7.png)
-
-## Ready Quick Draw from Random Tables or Sound Effects!
-![image](https://user-images.githubusercontent.com/27952699/145674190-4f8ae4d5-446c-470e-9229-8adb6c5f02f9.png)
-
-## Ready Journal Entries and Frequent Important Items or Abilities!
-![image](https://user-images.githubusercontent.com/27952699/145674165-7e0ee235-11e7-473c-bdc3-e620ed3f3e32.png)
-
-## Ready entire Compendiums themselves!
-![image](https://user-images.githubusercontent.com/27952699/145686242-e54f02e9-c366-44a1-8b21-169065542c59.png)
-
-### Notes
-_For individual sounds:_ This Feature only works on the upcoming Foundry V9 since it is a new feature in Foundry to be able to drag and drop sounds.
-
-![example](example-drag-all.gif)
 
 ## Check my other modules
 
